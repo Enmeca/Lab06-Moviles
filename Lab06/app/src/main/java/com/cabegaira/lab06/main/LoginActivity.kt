@@ -1,5 +1,6 @@
 package com.cabegaira.lab06.main
 
+import android.content.Intent
 import android.hardware.biometrics.BiometricManager
 import android.os.Bundle
 import android.widget.Toast
@@ -20,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
        super.onCreate(savedInstanceState)
        setContentView(R.layout.fingerprint_login)
+        val intent = Intent(this, ItemsCRUD::class.java)
+
         executor = ContextCompat.getMainExecutor(this)
         biometricPrompt = BiometricPrompt(this@LoginActivity, executor, object : BiometricPrompt.AuthenticationCallback(){
             override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
@@ -30,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                 super.onAuthenticationSucceeded(result)
                 Toast.makeText(this@LoginActivity, "Auntenticacion exitosa", Toast.LENGTH_SHORT ).show()
+                startActivity(intent)
             }
 
             override fun onAuthenticationFailed() {

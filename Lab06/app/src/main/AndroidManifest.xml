@@ -19,8 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab06" >
 
-
-    <activity android:name=".Camera">
+        <activity android:name=".main.ItemsCRUD" />
+    <activity android:name=".main.LoginActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
