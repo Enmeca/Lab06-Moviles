@@ -72,7 +72,7 @@ class ItemsCRUD : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         })
         btn = findViewById(R.id.addBtn) as Button
         btn!!.setOnClickListener{
-            val i = Intent(this, AddStudent::class.java)
+            val i = Intent(this, AddItems::class.java)
             startActivity(i)
             finish()
         }
@@ -96,19 +96,20 @@ class ItemsCRUD : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
 
                 if(direction == ItemTouchHelper.LEFT){
-                    student = Students(studentsList[position].id, studentsList[position].name, studentsList[position].lastname,studentsList[position].age)
+                    student = Items(studentsList[position].id, studentsList[position].desc, studentsList[position].Img_item)
                     deleteStudent(student.id)
                     list.adapter?.notifyItemRemoved(position)
 
-                    adapter = RecyclerView_Adapter_Students(studentsList)
+                    adapter = RecyclerView_Adapter_Item(studentsList)
                     list.adapter = adapter
                     adapter.notifyDataSetChanged()
                 }else{
-                    val intent = Intent(this@CRUDStudent, EditSt::class.java)
+                    /*
+                    val intent = Intent(this@ItemsCRUD0000, EditSt::class.java)
                     val item = studentsList[position]
                     intent.putExtra("dato", item )
                     startActivityForResult(intent,Llamada)
-                    listStudents()
+                    listStudents()*/
                     adapter.notifyDataSetChanged()
 
                 }
@@ -116,7 +117,7 @@ class ItemsCRUD : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
 
-                RecyclerViewSwipeDecorator.Builder(this@CRUDStudent, c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                RecyclerViewSwipeDecorator.Builder(this@ItemsCRUD, c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                     .addSwipeLeftBackgroundColor(ContextCompat.getColor(this@CRUDStudent, R.color.red))
                     .addSwipeLeftActionIcon(R.drawable.ic_baseline_delete_24)
                     .addSwipeRightBackgroundColor(ContextCompat.getColor(this@CRUDStudent, R.color.green))
