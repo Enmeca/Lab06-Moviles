@@ -20,6 +20,8 @@
         android:theme="@style/Theme.Lab06" >
 
         <activity android:name=".main.ItemsCRUD" />
+        <activity android:name=".main.AddItems" />
+
     <activity android:name=".main.LoginActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

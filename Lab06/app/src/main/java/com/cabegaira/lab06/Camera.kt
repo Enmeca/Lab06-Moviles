@@ -24,7 +24,7 @@ class Camera : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.camera_activity)
-        title = "KotlinApp"
+/*        title = "KotlinApp"
         if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_DENIED)
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), cameraRequest)
@@ -39,7 +39,7 @@ class Camera : AppCompatActivity() {
         photoButton.setOnClickListener {
             val ListItems = Intent(this,ItemsCRUD::class.java)
             startActivity(ListItems)
-        }
+        }*/
     }
 
     /*
