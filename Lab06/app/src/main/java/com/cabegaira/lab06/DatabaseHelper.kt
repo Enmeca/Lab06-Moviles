@@ -2,6 +2,7 @@ package com.cabegaira.lab06
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -37,6 +38,12 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     }
 
+    fun getQuery(query : String?): Cursor {
+        val db = this.writableDatabase
+        var mCursor : Cursor = db.rawQuery(query, null)
+        mCursor?.moveToFirst()
+        return mCursor
+    }
 
     fun getdata(): ByteArray {
         val db = writableDatabase

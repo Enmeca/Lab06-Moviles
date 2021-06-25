@@ -12,6 +12,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.cabegaira.lab06.main.ItemsCRUD
 import java.io.ByteArrayOutputStream
 
 class Camera : AppCompatActivity() {
@@ -32,6 +33,12 @@ class Camera : AppCompatActivity() {
         photoButton.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(cameraIntent, cameraRequest)
+        }
+
+        val Items: Button = findViewById(R.id.button_list)
+        photoButton.setOnClickListener {
+            val ListItems = Intent(this,ItemsCRUD::class.java)
+            startActivity(ListItems)
         }
     }
 

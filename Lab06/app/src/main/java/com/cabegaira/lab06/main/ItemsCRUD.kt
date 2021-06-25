@@ -1,30 +1,29 @@
 package com.cabegaira.lab06.main
 
+/*import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController*/
+
 import android.app.Activity
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
-/*import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController*/
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.navigation.NavigationView
+import com.cabegaira.lab06.DatabaseHelper
+import com.cabegaira.lab06.R
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import java.util.*
 import kotlin.collections.ArrayList
 
-import com.cabegaira.lab06.DatabaseHelper
-import com.cabegaira.lab06.R
-
-class ItemsCRUD : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class ItemsCRUD : AppCompatActivity(){
 
     var db: DatabaseHelper? = null
     private lateinit var studentsList : ArrayList<Items>
@@ -64,6 +63,8 @@ class ItemsCRUD : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
+
+
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 adapter.filter.filter(newText)
@@ -118,10 +119,10 @@ class ItemsCRUD : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
 
                 RecyclerViewSwipeDecorator.Builder(this@ItemsCRUD, c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(this@CRUDStudent, R.color.red))
-                    .addSwipeLeftActionIcon(R.drawable.ic_baseline_delete_24)
-                    .addSwipeRightBackgroundColor(ContextCompat.getColor(this@CRUDStudent, R.color.green))
-                    .addSwipeRightActionIcon(R.drawable.ic_baseline_edit_24)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(this@ItemsCRUD, R.color.red))
+                    .addSwipeLeftActionIcon(R.drawable.ic_launcher_background)
+                    .addSwipeRightBackgroundColor(ContextCompat.getColor(this@ItemsCRUD, R.color.green))
+                    .addSwipeRightActionIcon(R.drawable.ic_launcher_background)
                     .create()
                     .decorate()
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
@@ -138,6 +139,7 @@ class ItemsCRUD : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     }
 
 
+/*
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.nav_students -> {
@@ -167,30 +169,35 @@ class ItemsCRUD : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         }
         return true
     }
+*/
 
     fun listStudents(){
 
         db = DatabaseHelper(this)
 
-        var studentsCursor : Cursor? = db!!.getQuery("SELECT * from TABLE_STUDENTS")
+        var studentsCursor : Cursor? = db!!.getQuery("SELECT * from tbl_desc d, tbl_items i where d.img=i.ID")
         var studentsSize : Int = studentsCursor!!.count
 
 
-        studentsList = ArrayList<Students>()
+        studentsList = ArrayList<Items>()
 
         if(studentsSize>0){
 
             do{
                 val id = studentsCursor.getInt(0)
-                val name = studentsCursor.getString(1)
-                val lastName = studentsCursor.getString(2)
-                val age = studentsCursor.getInt(3)
+                val desc = studentsCursor.getString(1)
+                val img = studentsCursor.getBlob(4)
+                val imgD:Bitmap
+                imgD= BitmapFactory.decodeByteArray(
+                    img, 0,
+                    img.size
+                )
 
-                studentsList.add(Students(id,name,lastName,age))
+                studentsList.add(Items(id,desc, imgD))
             }while(studentsCursor.moveToNext())
         }
 
-        adapter = RecyclerView_Adapter_Students(studentsList)
+        adapter = RecyclerView_Adapter_Item(studentsList)
         list.adapter = adapter
 
 
@@ -199,13 +206,13 @@ class ItemsCRUD : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
     fun deleteStudent(id :Int){
 
-        try {
+/*        try {
             dbHelper.deleteStudent(id.toString())
             listStudents()
         }catch (e: Exception){
             e.printStackTrace()
             //showToast(e.message.toString())
-        }
+        }*/
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
