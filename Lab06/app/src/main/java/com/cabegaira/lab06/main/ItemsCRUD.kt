@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cabegaira.lab06.DatabaseHelper
 import com.cabegaira.lab06.R
+import com.cabegaira.lab06.SMS
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import java.util.*
 import kotlin.collections.ArrayList
@@ -40,7 +41,7 @@ class ItemsCRUD : AppCompatActivity(){
 
         //to change title of activity
         val actionBar = supportActionBar
-        actionBar!!.title = "CRUD Estudiantes"
+        actionBar!!.title = "CRUD ITEMS"
 
         list = findViewById(R.id.students_list)
         list.layoutManager = LinearLayoutManager(list.context)
@@ -105,12 +106,12 @@ class ItemsCRUD : AppCompatActivity(){
                     list.adapter = adapter
                     adapter.notifyDataSetChanged()
                 }else{
-                    /*
-                    val intent = Intent(this@ItemsCRUD0000, EditSt::class.java)
+
+                    val intent = Intent(this@ItemsCRUD, SMS::class.java)
                     val item = studentsList[position]
-                    intent.putExtra("dato", item )
-                    startActivityForResult(intent,Llamada)
-                    listStudents()*/
+                    intent.putExtra("dato", item.desc )
+                    startActivity(intent)
+                    listStudents()
                     adapter.notifyDataSetChanged()
 
                 }
@@ -185,7 +186,7 @@ class ItemsCRUD : AppCompatActivity(){
 
             do{
                 val id = studentsCursor.getInt(0)
-                val desc = studentsCursor.getString(1)
+                val desc = studentsCursor.getString(2)
                 val img = studentsCursor.getBlob(4)
                 val imgD:Bitmap
                 imgD= BitmapFactory.decodeByteArray(

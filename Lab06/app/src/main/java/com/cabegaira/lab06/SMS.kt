@@ -18,6 +18,7 @@ class SMS : AppCompatActivity() {
     lateinit var editTextNumber: EditText
     lateinit var editTextMessage: EditText
     private val permissionRequest = 101
+    var desc : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sms_activity)
@@ -25,6 +26,8 @@ class SMS : AppCompatActivity() {
         editTextNumber = findViewById(R.id.editTextNum)
         editTextMessage = findViewById(R.id.editTextMsg)
         button = findViewById(R.id.btnSendMsg)
+        desc = intent.getSerializableExtra("dato") as String
+        editTextMessage.setText(desc)
     }
     fun sendMessage(view: View) {
         val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)

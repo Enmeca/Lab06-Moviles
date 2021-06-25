@@ -39,16 +39,17 @@ class RecyclerView_Adapter_Item(private var items: ArrayList<Items>): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = itemsList?.get(position)
+        var item = itemsList?.get(position)
         holder.itemView.findViewById<TextView>(R.id.tvName)?.text = item?.desc
         holder.itemView.findViewById<TextView>(R.id.tvId)?.text = item?.id.toString()
         holder.itemView.findViewById<ImageView>(R.id.ivFoto).setImageBitmap(item?.Img_item)
-/*
+
         holder.itemView.setOnClickListener {
-            val intent = Intent(this.mcontext, GetMatricula::class.java)
-            intent.putExtra("student", item?.id)
+            val intent = Intent(this.mcontext, Img_Item::class.java)
+            intent.putExtra("img", item?.Img_item)
+            intent.putExtra("desc", item?.desc)
             this.mcontext.startActivity(intent)
-        }*/
+        }
 
     }
 

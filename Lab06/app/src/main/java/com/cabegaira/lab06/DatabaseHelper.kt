@@ -57,11 +57,37 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return byteArrayOf()
     }
 
+    fun Img_MAX() : Int{
+        val db = writableDatabase
+        val res = db.rawQuery("select MAX(ID) from "+ TABLE_IMG, null)
+        if (res.moveToFirst()) {
+            do {
+                return res.getInt(0)
+            } while (res.moveToNext())
+        }
+
+        return -1
+    }
+
+    fun insertItem(desc:String){
+
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+        val img = Img_MAX()
+        contentValues.put(DESC, desc)
+        contentValues.put(IMG, img)
+        db.insert(TABLE_DES, null, contentValues)
+
+    }
     companion object {
         private val DATABASE_NAME = "user.db"
         private val TABLE_IMG = "tbl_items"
         private val TABLE_DES = "tbl_desc"
         private val CAL_NO1 = "Item_img"
+        private val IMG = "img"
+
+        private val DESC = "desc"
     }
 
 }

@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -26,7 +27,7 @@ class AddItems : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.camera_activity)
-        title = "KotlinApp"
+        title = "Añadir item"
         if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_DENIED)
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), cameraRequest)
@@ -39,6 +40,7 @@ class AddItems : AppCompatActivity(){
 
         val Items: Button = findViewById(R.id.insertBtn)
         Items.setOnClickListener {
+            InsertItem()
             val ListItems = Intent(this,ItemsCRUD::class.java)
             startActivity(ListItems)
         }
@@ -50,18 +52,27 @@ class AddItems : AppCompatActivity(){
     *  Se cae si da para atras
     *
     * */
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == cameraRequest) {
+        if (requestCode == cameraRequest && resultCode == RESULT_OK) {
             val photo = data?.extras!!.get("data") as Bitmap
             val stream = ByteArrayOutputStream()
             photo.compress(Bitmap.CompressFormat.PNG, 100, stream)
             val byteArray = stream.toByteArray()
             item_foto.setImageBitmap(photo)
-            
+
             Log.d("check",dbSq.insertData(byteArray).toString().plus(" "));
         }
     }
 
+    fun InsertItem() {
+        try {
+            var desc = desctxt.text.toString()
+            dbSq.insertItem(desc)
+            Toast.makeText(this, "ITEM Agregado", Toast.LENGTH_SHORT).show()
+            finish()
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
 }
