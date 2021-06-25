@@ -12,7 +12,7 @@
         android:id="@+id/item_foto"
         android:layout_width="115dp"
         android:layout_height="115dp"
-        app:srcCompat="@drawable/fingerprint" />
+        app:srcCompat="@drawable/imageicon" />
 
     <LinearLayout
         android:layout_marginTop="24dp"
@@ -48,9 +48,10 @@
         <Button
             android:id="@+id/photoBtn"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Tomar Foto" />
+            android:layout_weight="1"
+            android:text="Tomar Foto"
+            app:backgroundTint="#4CAF50" />
 
 
     </LinearLayout>
@@ -63,9 +64,10 @@
         <Button
             android:id="@+id/insertBtn"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Insertar" />
+            android:layout_weight="1"
+            android:text="Insertar"
+            app:backgroundTint="#4CAF50" />
 
 
     </LinearLayout>
