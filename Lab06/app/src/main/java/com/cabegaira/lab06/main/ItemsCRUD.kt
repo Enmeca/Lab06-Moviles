@@ -121,9 +121,9 @@ class ItemsCRUD : AppCompatActivity(){
 
                 RecyclerViewSwipeDecorator.Builder(this@ItemsCRUD, c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                     .addSwipeLeftBackgroundColor(ContextCompat.getColor(this@ItemsCRUD, R.color.red))
-                    .addSwipeLeftActionIcon(R.drawable.ic_launcher_background)
+                    .addSwipeLeftActionIcon(R.drawable.ic_baseline_message_24)
                     .addSwipeRightBackgroundColor(ContextCompat.getColor(this@ItemsCRUD, R.color.green))
-                    .addSwipeRightActionIcon(R.drawable.ic_launcher_background)
+                    .addSwipeRightActionIcon(R.drawable.ic_baseline_message_24)
                     .create()
                     .decorate()
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
