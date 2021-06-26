@@ -1,6 +1,7 @@
 package com.cabegaira.lab06.main
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -42,12 +43,12 @@ class AddItems : AppCompatActivity(){
         Items.setOnClickListener {
             InsertItem()
             val ListItems = Intent(this,ItemsCRUD::class.java)
-            startActivity(ListItems)
+            setResult(Activity.RESULT_OK)
             finish()
         }
         atras.setOnClickListener {
-            val ListItems = Intent(this,ItemsCRUD::class.java)
-            startActivity(ListItems)
+/*            val ListItems = Intent(this,ItemsCRUD::class.java)
+            startActivity(ListItems)*/
             finish()
         }
 
@@ -80,6 +81,7 @@ class AddItems : AppCompatActivity(){
             var phone = phonetxt.text.toString()
             dbSq.insertItem(desc,price,phone)
             Toast.makeText(this, "ITEM Agregado", Toast.LENGTH_SHORT).show()
+            setResult(Activity.RESULT_OK)
             finish()
         }catch (e: Exception){
             e.printStackTrace()
@@ -87,8 +89,8 @@ class AddItems : AppCompatActivity(){
     }
 
     override fun onBackPressed() {
-        val ListItems = Intent(this,ItemsCRUD::class.java)
-        startActivity(ListItems)
+/*        val ListItems = Intent(this,ItemsCRUD::class.java)
+        startActivity(ListItems)*/
         finish()
     }
 }
