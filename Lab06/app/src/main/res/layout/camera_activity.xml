@@ -4,14 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/Ivory">
+
+    <ImageButton
+        android:id="@+id/atras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 
     <ImageView
+        android:id="@+id/item_foto"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
-        android:id="@+id/item_foto"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
+        android:textColorHint="@color/black"
         app:srcCompat="@drawable/imageicon" />
 
     <LinearLayout
@@ -22,22 +30,25 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:maxLines="1"
             android:padding="5dp"
             android:text="Descripcion: "
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/desctxt"
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:ems="10"
+            android:hint="Descripcion"
             android:inputType="text"
-            android:hint="Descripcion" />
+            android:textColorHint="@color/black"
+            android:textColor="@color/black" />
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="24dp"
@@ -47,12 +58,13 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:maxLines="1"
             android:padding="5dp"
             android:text="Precio: "
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <EditText
@@ -62,7 +74,9 @@
             android:layout_weight="2"
             android:ems="10"
             android:hint="Precio"
-            android:inputType="text" />
+            android:textColorHint="@color/black"
+            android:inputType="text"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -73,22 +87,25 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:maxLines="1"
             android:padding="5dp"
             android:text="Celular: "
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/phonetxt"
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:ems="10"
+            android:textColorHint="@color/black"
+            android:hint="Telefono"
             android:inputType="phone"
-            android:hint="Telefono" />
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -102,6 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Tomar Foto"
+            android:textColor="@color/black"
             app:backgroundTint="#4CAF50" />
 
 
@@ -118,6 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Insertar"
+            android:textColor="@color/black"
             app:backgroundTint="#4CAF50" />
 
 

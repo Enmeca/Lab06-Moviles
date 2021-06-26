@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/Ivory"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imgItem"
         android:layout_width="328dp"
         android:layout_height="367dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_report_image" />
@@ -19,9 +20,10 @@
         android:id="@+id/desc"
         android:layout_width="214dp"
         android:layout_height="76dp"
-        android:layout_marginStart="98dp"
         android:layout_marginTop="45dp"
         android:text="Descripcion del producto"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
 
@@ -29,9 +31,10 @@
         android:id="@+id/txtDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="32dp"
         android:text="Descripcion"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgItem" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,4 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#E13A3A</color>
     <color name="green">#14A809</color>
+    <color name="Misty">#2F5061</color>
+    <color name="Coral">#E57F84</color>
+    <color name="Ivory">#F4EAE6</color>
+    <color name="TealGreen">#4297A0</color>
+
 </resources>

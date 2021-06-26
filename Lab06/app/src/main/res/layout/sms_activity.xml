@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="4dp"
+    android:background="@color/Ivory"
     tools:context=".MainActivity">
     <EditText
         android:id="@+id/editTextNum"
@@ -26,4 +27,12 @@
         android:layout_marginTop="5dp"
         android:onClick="sendMessage"
         android:text="Send Message" />
+    <Button
+        android:id="@+id/btnCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+
+        android:text="Llamar al vendedor" />
 </LinearLayout>

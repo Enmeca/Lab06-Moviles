@@ -1,7 +1,9 @@
 package com.cabegaira.lab06
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.text.TextUtils
@@ -12,7 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-
+import kotlinx.android.synthetic.main.sms_activity.*
 class SMS : AppCompatActivity() {
     lateinit var button: Button
     lateinit var editTextNumber: EditText
@@ -27,7 +29,17 @@ class SMS : AppCompatActivity() {
         editTextMessage = findViewById(R.id.editTextMsg)
         button = findViewById(R.id.btnSendMsg)
         desc = intent.getSerializableExtra("dato") as String
+        var phone = intent.getSerializableExtra("phone") as String
+
+        editTextNumber.setText(phone)
+        desc="Buenas, estoy interesado en el producto: "+desc
         editTextMessage.setText(desc)
+
+        btnCall.setOnClickListener{
+            val dialIntent = Intent(Intent.ACTION_DIAL)
+            dialIntent.data = Uri.parse("tel:" + phone)
+            startActivity(dialIntent)
+        }
     }
     fun sendMessage(view: View) {
         val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)

@@ -43,7 +43,14 @@ class AddItems : AppCompatActivity(){
             InsertItem()
             val ListItems = Intent(this,ItemsCRUD::class.java)
             startActivity(ListItems)
+            finish()
         }
+        atras.setOnClickListener {
+            val ListItems = Intent(this,ItemsCRUD::class.java)
+            startActivity(ListItems)
+            finish()
+        }
+
     }
 
     /*
@@ -56,6 +63,7 @@ class AddItems : AppCompatActivity(){
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == cameraRequest && resultCode == RESULT_OK) {
             val photo = data?.extras!!.get("data") as Bitmap
+
             val stream = ByteArrayOutputStream()
             photo.compress(Bitmap.CompressFormat.PNG, 100, stream)
             val byteArray = stream.toByteArray()
@@ -76,5 +84,11 @@ class AddItems : AppCompatActivity(){
         }catch (e: Exception){
             e.printStackTrace()
         }
+    }
+
+    override fun onBackPressed() {
+        val ListItems = Intent(this,ItemsCRUD::class.java)
+        startActivity(ListItems)
+        finish()
     }
 }

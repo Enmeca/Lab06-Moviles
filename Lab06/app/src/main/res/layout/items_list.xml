@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbarStyle="outsideOverlay"
-
+    android:background="@color/Ivory"
     >
     <ScrollView
         android:layout_width="match_parent"
@@ -20,11 +20,15 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.SearchView
+
                 android:id="@+id/student_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textCursorDrawable="@null"
                 app:iconifiedByDefault="false"
+                app:defaultQueryHint="Busqueda"
+                style="@style/SearchViewStyle"
+                android:outlineAmbientShadowColor="@color/black"
                 app:queryBackground="@null" />
 
             <Button

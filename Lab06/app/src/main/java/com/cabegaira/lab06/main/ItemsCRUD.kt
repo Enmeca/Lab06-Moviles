@@ -9,6 +9,7 @@ import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,8 @@ import com.cabegaira.lab06.DatabaseHelper
 import com.cabegaira.lab06.R
 import com.cabegaira.lab06.SMS
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
+import kotlinx.android.synthetic.main.items_list.*
+import kotlinx.android.synthetic.main.phone_activity.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -42,6 +45,8 @@ class ItemsCRUD : AppCompatActivity(){
         //to change title of activity
         val actionBar = supportActionBar
         actionBar!!.title = "CRUD ITEMS"
+        student_search.setBackgroundColor(Color.BLACK)
+
 
         list = findViewById(R.id.students_list)
         list.layoutManager = LinearLayoutManager(list.context)
@@ -110,6 +115,7 @@ class ItemsCRUD : AppCompatActivity(){
                     val intent = Intent(this@ItemsCRUD, SMS::class.java)
                     val item = studentsList[position]
                     intent.putExtra("dato", item.desc )
+                    intent.putExtra("phone", item.phone )
                     startActivity(intent)
                     listStudents()
                     adapter.notifyDataSetChanged()
@@ -120,10 +126,10 @@ class ItemsCRUD : AppCompatActivity(){
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
 
                 RecyclerViewSwipeDecorator.Builder(this@ItemsCRUD, c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(this@ItemsCRUD, R.color.red))
-                    .addSwipeLeftActionIcon(R.drawable.ic_baseline_message_24)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(this@ItemsCRUD, R.color.Coral))
+                    .addSwipeLeftActionIcon(R.drawable.share_icon)
                     .addSwipeRightBackgroundColor(ContextCompat.getColor(this@ItemsCRUD, R.color.green))
-                    .addSwipeRightActionIcon(R.drawable.ic_baseline_message_24)
+                    .addSwipeRightActionIcon(R.drawable.share_icon)
                     .create()
                     .decorate()
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
