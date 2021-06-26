@@ -7,12 +7,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import com.cabegaira.lab06.DatabaseHelper
 import com.cabegaira.lab06.R
 import kotlinx.android.synthetic.main.fingerprint_login.*
 import java.util.concurrent.Executor
 
 class LoginActivity : AppCompatActivity() {
-
+    var db: DatabaseHelper? = null
     private lateinit var executor : Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
@@ -22,7 +23,8 @@ class LoginActivity : AppCompatActivity() {
        super.onCreate(savedInstanceState)
        setContentView(R.layout.fingerprint_login)
         val intent = Intent(this, ItemsCRUD::class.java)
-
+        db = DatabaseHelper(this)
+        val id = db?.Img_MAX()
         executor = ContextCompat.getMainExecutor(this)
         biometricPrompt = BiometricPrompt(this@LoginActivity, executor, object : BiometricPrompt.AuthenticationCallback(){
             override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
