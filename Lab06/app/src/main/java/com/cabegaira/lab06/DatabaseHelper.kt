@@ -12,7 +12,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         db.execSQL("Create Table $TABLE_IMG(ID INTEGER PRIMARY KEY AUTOINCREMENT,Item_img BLOB)")
 
-        db.execSQL("Create Table $TABLE_DES(ID INTEGER PRIMARY KEY AUTOINCREMENT,img INTEGER, desc TEXT)")
+        db.execSQL("Create Table $TABLE_DES(ID INTEGER PRIMARY KEY AUTOINCREMENT,img INTEGER, desc TEXT, price NUMERIC)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -69,7 +69,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return -1
     }
 
-    fun insertItem(desc:String){
+    fun insertItem(desc:String,price:Int){
 
         val db = this.writableDatabase
         val contentValues = ContentValues()
@@ -77,6 +77,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val img = Img_MAX()
         contentValues.put(DESC, desc)
         contentValues.put(IMG, img)
+        contentValues.put(PRICE, price)
         db.insert(TABLE_DES, null, contentValues)
 
     }
@@ -88,6 +89,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private val IMG = "img"
 
         private val DESC = "desc"
+        private val PRICE = "price"
     }
 
 }

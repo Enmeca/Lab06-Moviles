@@ -98,7 +98,7 @@ class ItemsCRUD : AppCompatActivity(){
 
 
                 if(direction == ItemTouchHelper.LEFT){
-                    student = Items(studentsList[position].id, studentsList[position].desc, studentsList[position].Img_item)
+                    student = Items(studentsList[position].id, studentsList[position].desc, studentsList[position].Img_item,studentsList[position].price)
                     deleteStudent(student.id)
                     list.adapter?.notifyItemRemoved(position)
 
@@ -187,6 +187,7 @@ class ItemsCRUD : AppCompatActivity(){
             do{
                 val id = studentsCursor.getInt(0)
                 val desc = studentsCursor.getString(2)
+                val price = studentsCursor.getString(2)
                 val img = studentsCursor.getBlob(4)
                 val imgD:Bitmap
                 imgD= BitmapFactory.decodeByteArray(
@@ -194,7 +195,7 @@ class ItemsCRUD : AppCompatActivity(){
                     img.size
                 )
 
-                studentsList.add(Items(id,desc, imgD))
+                studentsList.add(Items(id,desc, imgD,price))
             }while(studentsCursor.moveToNext())
         }
 

@@ -68,7 +68,8 @@ class AddItems : AppCompatActivity(){
     fun InsertItem() {
         try {
             var desc = desctxt.text.toString()
-            dbSq.insertItem(desc)
+            var price = pricetxt.text.toString().toInt()
+            dbSq.insertItem(desc,price)
             Toast.makeText(this, "ITEM Agregado", Toast.LENGTH_SHORT).show()
             finish()
         }catch (e: Exception){
